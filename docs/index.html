@@ -316,7 +316,7 @@
 <body>
     <div class="header">
         <h1>📊 跨资产实时监控系统</h1>
-        <div class="timestamp">专业版 | 更新时间: 2026-02-13 10:07:03</div>
+        <div class="timestamp">专业版 | 更新时间: 2026-02-13 10:10:47</div>
     </div>
 
     <div class="market-overview">
@@ -382,11 +382,23 @@
                         <span class="metric-label">BB ➡️</span>
                         <span class="metric-value">middle</span>
                     </div>
-                    <div class="metric">
-                        <span class="metric-label">CCI120</span>
-                        <span class="metric-value ">30 中性</span>
+                    <div class="metric" style="grid-column: span 2;">
+                        <span class="metric-label">CCI 120</span>
+                        <div class="cci-container">
+                            <div class="cci-scale">
+                                <div class="cci-zero"></div>
+                                <div class="cci-marker" style="left: 57.6%;"></div>
+                            </div>
+                            <span class="metric-value ">30</span>
+                        </div>
                     </div>
                 </div>
+                <style>
+                    .cci-container { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+                    .cci-scale { position: relative; flex: 1; height: 8px; background: linear-gradient(90deg, #ef4444 0%, #facc15 25%, #22c55e 50%, #facc15 75%, #ef4444 100%); border-radius: 4px; overflow: hidden; }
+                    .cci-zero { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.5); }
+                    .cci-marker { position: absolute; top: -2px; width: 12px; height: 12px; background: #fff; border: 2px solid #3b82f6; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 8px rgba(59,130,246,0.6); }
+                </style>
                 <div style="margin-top: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
                     <div class="range-bar">
@@ -430,11 +442,23 @@
                         <span class="metric-label">BB ➡️</span>
                         <span class="metric-value">middle</span>
                     </div>
-                    <div class="metric">
-                        <span class="metric-label">CCI120</span>
-                        <span class="metric-value positive">-252 超卖</span>
+                    <div class="metric" style="grid-column: span 2;">
+                        <span class="metric-label">CCI 120</span>
+                        <div class="cci-container">
+                            <div class="cci-scale">
+                                <div class="cci-zero"></div>
+                                <div class="cci-marker" style="left: 0.0%;"></div>
+                            </div>
+                            <span class="metric-value positive">-252</span>
+                        </div>
                     </div>
                 </div>
+                <style>
+                    .cci-container { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+                    .cci-scale { position: relative; flex: 1; height: 8px; background: linear-gradient(90deg, #ef4444 0%, #facc15 25%, #22c55e 50%, #facc15 75%, #ef4444 100%); border-radius: 4px; overflow: hidden; }
+                    .cci-zero { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.5); }
+                    .cci-marker { position: absolute; top: -2px; width: 12px; height: 12px; background: #fff; border: 2px solid #3b82f6; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 8px rgba(59,130,246,0.6); }
+                </style>
                 <div style="margin-top: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
                     <div class="range-bar">
@@ -478,11 +502,23 @@
                         <span class="metric-label">BB 📉</span>
                         <span class="metric-value">lower</span>
                     </div>
-                    <div class="metric">
-                        <span class="metric-label">CCI120</span>
-                        <span class="metric-value ">51 中性</span>
+                    <div class="metric" style="grid-column: span 2;">
+                        <span class="metric-label">CCI 120</span>
+                        <div class="cci-container">
+                            <div class="cci-scale">
+                                <div class="cci-zero"></div>
+                                <div class="cci-marker" style="left: 62.8%;"></div>
+                            </div>
+                            <span class="metric-value ">51</span>
+                        </div>
                     </div>
                 </div>
+                <style>
+                    .cci-container { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+                    .cci-scale { position: relative; flex: 1; height: 8px; background: linear-gradient(90deg, #ef4444 0%, #facc15 25%, #22c55e 50%, #facc15 75%, #ef4444 100%); border-radius: 4px; overflow: hidden; }
+                    .cci-zero { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.5); }
+                    .cci-marker { position: absolute; top: -2px; width: 12px; height: 12px; background: #fff; border: 2px solid #3b82f6; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 8px rgba(59,130,246,0.6); }
+                </style>
                 <div style="margin-top: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
                     <div class="range-bar">
@@ -526,11 +562,23 @@
                         <span class="metric-label">BB 📉</span>
                         <span class="metric-value">lower</span>
                     </div>
-                    <div class="metric">
-                        <span class="metric-label">CCI120</span>
-                        <span class="metric-value positive">-253 超卖</span>
+                    <div class="metric" style="grid-column: span 2;">
+                        <span class="metric-label">CCI 120</span>
+                        <div class="cci-container">
+                            <div class="cci-scale">
+                                <div class="cci-zero"></div>
+                                <div class="cci-marker" style="left: 0.0%;"></div>
+                            </div>
+                            <span class="metric-value positive">-253</span>
+                        </div>
                     </div>
                 </div>
+                <style>
+                    .cci-container { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+                    .cci-scale { position: relative; flex: 1; height: 8px; background: linear-gradient(90deg, #ef4444 0%, #facc15 25%, #22c55e 50%, #facc15 75%, #ef4444 100%); border-radius: 4px; overflow: hidden; }
+                    .cci-zero { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.5); }
+                    .cci-marker { position: absolute; top: -2px; width: 12px; height: 12px; background: #fff; border: 2px solid #3b82f6; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 8px rgba(59,130,246,0.6); }
+                </style>
                 <div style="margin-top: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
                     <div class="range-bar">
@@ -574,11 +622,23 @@
                         <span class="metric-label">BB ➡️</span>
                         <span class="metric-value">middle</span>
                     </div>
-                    <div class="metric">
-                        <span class="metric-label">CCI120</span>
-                        <span class="metric-value ">57 中性</span>
+                    <div class="metric" style="grid-column: span 2;">
+                        <span class="metric-label">CCI 120</span>
+                        <div class="cci-container">
+                            <div class="cci-scale">
+                                <div class="cci-zero"></div>
+                                <div class="cci-marker" style="left: 64.4%;"></div>
+                            </div>
+                            <span class="metric-value ">57</span>
+                        </div>
                     </div>
                 </div>
+                <style>
+                    .cci-container { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+                    .cci-scale { position: relative; flex: 1; height: 8px; background: linear-gradient(90deg, #ef4444 0%, #facc15 25%, #22c55e 50%, #facc15 75%, #ef4444 100%); border-radius: 4px; overflow: hidden; }
+                    .cci-zero { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.5); }
+                    .cci-marker { position: absolute; top: -2px; width: 12px; height: 12px; background: #fff; border: 2px solid #3b82f6; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 8px rgba(59,130,246,0.6); }
+                </style>
                 <div style="margin-top: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
                     <div class="range-bar">
@@ -622,11 +682,23 @@
                         <span class="metric-label">BB ➡️</span>
                         <span class="metric-value">middle</span>
                     </div>
-                    <div class="metric">
-                        <span class="metric-label">CCI120</span>
-                        <span class="metric-value ">-40 中性</span>
+                    <div class="metric" style="grid-column: span 2;">
+                        <span class="metric-label">CCI 120</span>
+                        <div class="cci-container">
+                            <div class="cci-scale">
+                                <div class="cci-zero"></div>
+                                <div class="cci-marker" style="left: 40.1%;"></div>
+                            </div>
+                            <span class="metric-value ">-40</span>
+                        </div>
                     </div>
                 </div>
+                <style>
+                    .cci-container { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+                    .cci-scale { position: relative; flex: 1; height: 8px; background: linear-gradient(90deg, #ef4444 0%, #facc15 25%, #22c55e 50%, #facc15 75%, #ef4444 100%); border-radius: 4px; overflow: hidden; }
+                    .cci-zero { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.5); }
+                    .cci-marker { position: absolute; top: -2px; width: 12px; height: 12px; background: #fff; border: 2px solid #3b82f6; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 8px rgba(59,130,246,0.6); }
+                </style>
                 <div style="margin-top: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
                     <div class="range-bar">
@@ -670,11 +742,23 @@
                         <span class="metric-label">BB ➡️</span>
                         <span class="metric-value">middle</span>
                     </div>
-                    <div class="metric">
-                        <span class="metric-label">CCI120</span>
-                        <span class="metric-value ">-12 中性</span>
+                    <div class="metric" style="grid-column: span 2;">
+                        <span class="metric-label">CCI 120</span>
+                        <div class="cci-container">
+                            <div class="cci-scale">
+                                <div class="cci-zero"></div>
+                                <div class="cci-marker" style="left: 47.1%;"></div>
+                            </div>
+                            <span class="metric-value ">-12</span>
+                        </div>
                     </div>
                 </div>
+                <style>
+                    .cci-container { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+                    .cci-scale { position: relative; flex: 1; height: 8px; background: linear-gradient(90deg, #ef4444 0%, #facc15 25%, #22c55e 50%, #facc15 75%, #ef4444 100%); border-radius: 4px; overflow: hidden; }
+                    .cci-zero { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.5); }
+                    .cci-marker { position: absolute; top: -2px; width: 12px; height: 12px; background: #fff; border: 2px solid #3b82f6; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 8px rgba(59,130,246,0.6); }
+                </style>
                 <div style="margin-top: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
                     <div class="range-bar">
@@ -718,11 +802,23 @@
                         <span class="metric-label">BB 📉</span>
                         <span class="metric-value">lower</span>
                     </div>
-                    <div class="metric">
-                        <span class="metric-label">CCI120</span>
-                        <span class="metric-value ">64 中性</span>
+                    <div class="metric" style="grid-column: span 2;">
+                        <span class="metric-label">CCI 120</span>
+                        <div class="cci-container">
+                            <div class="cci-scale">
+                                <div class="cci-zero"></div>
+                                <div class="cci-marker" style="left: 66.1%;"></div>
+                            </div>
+                            <span class="metric-value ">64</span>
+                        </div>
                     </div>
                 </div>
+                <style>
+                    .cci-container { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+                    .cci-scale { position: relative; flex: 1; height: 8px; background: linear-gradient(90deg, #ef4444 0%, #facc15 25%, #22c55e 50%, #facc15 75%, #ef4444 100%); border-radius: 4px; overflow: hidden; }
+                    .cci-zero { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.5); }
+                    .cci-marker { position: absolute; top: -2px; width: 12px; height: 12px; background: #fff; border: 2px solid #3b82f6; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 8px rgba(59,130,246,0.6); }
+                </style>
                 <div style="margin-top: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
                     <div class="range-bar">
@@ -766,11 +862,23 @@
                         <span class="metric-label">BB 📉</span>
                         <span class="metric-value">lower</span>
                     </div>
-                    <div class="metric">
-                        <span class="metric-label">CCI120</span>
-                        <span class="metric-value ">-11 中性</span>
+                    <div class="metric" style="grid-column: span 2;">
+                        <span class="metric-label">CCI 120</span>
+                        <div class="cci-container">
+                            <div class="cci-scale">
+                                <div class="cci-zero"></div>
+                                <div class="cci-marker" style="left: 47.2%;"></div>
+                            </div>
+                            <span class="metric-value ">-11</span>
+                        </div>
                     </div>
                 </div>
+                <style>
+                    .cci-container { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+                    .cci-scale { position: relative; flex: 1; height: 8px; background: linear-gradient(90deg, #ef4444 0%, #facc15 25%, #22c55e 50%, #facc15 75%, #ef4444 100%); border-radius: 4px; overflow: hidden; }
+                    .cci-zero { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.5); }
+                    .cci-marker { position: absolute; top: -2px; width: 12px; height: 12px; background: #fff; border: 2px solid #3b82f6; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 8px rgba(59,130,246,0.6); }
+                </style>
                 <div style="margin-top: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
                     <div class="range-bar">
@@ -814,11 +922,23 @@
                         <span class="metric-label">BB 📉</span>
                         <span class="metric-value">lower</span>
                     </div>
-                    <div class="metric">
-                        <span class="metric-label">CCI120</span>
-                        <span class="metric-value negative">117 超买</span>
+                    <div class="metric" style="grid-column: span 2;">
+                        <span class="metric-label">CCI 120</span>
+                        <div class="cci-container">
+                            <div class="cci-scale">
+                                <div class="cci-zero"></div>
+                                <div class="cci-marker" style="left: 79.2%;"></div>
+                            </div>
+                            <span class="metric-value negative">117</span>
+                        </div>
                     </div>
                 </div>
+                <style>
+                    .cci-container { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+                    .cci-scale { position: relative; flex: 1; height: 8px; background: linear-gradient(90deg, #ef4444 0%, #facc15 25%, #22c55e 50%, #facc15 75%, #ef4444 100%); border-radius: 4px; overflow: hidden; }
+                    .cci-zero { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.5); }
+                    .cci-marker { position: absolute; top: -2px; width: 12px; height: 12px; background: #fff; border: 2px solid #3b82f6; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 8px rgba(59,130,246,0.6); }
+                </style>
                 <div style="margin-top: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
                     <div class="range-bar">
@@ -862,11 +982,23 @@
                         <span class="metric-label">BB 📉</span>
                         <span class="metric-value">lower</span>
                     </div>
-                    <div class="metric">
-                        <span class="metric-label">CCI120</span>
-                        <span class="metric-value ">69 中性</span>
+                    <div class="metric" style="grid-column: span 2;">
+                        <span class="metric-label">CCI 120</span>
+                        <div class="cci-container">
+                            <div class="cci-scale">
+                                <div class="cci-zero"></div>
+                                <div class="cci-marker" style="left: 67.1%;"></div>
+                            </div>
+                            <span class="metric-value ">69</span>
+                        </div>
                     </div>
                 </div>
+                <style>
+                    .cci-container { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+                    .cci-scale { position: relative; flex: 1; height: 8px; background: linear-gradient(90deg, #ef4444 0%, #facc15 25%, #22c55e 50%, #facc15 75%, #ef4444 100%); border-radius: 4px; overflow: hidden; }
+                    .cci-zero { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.5); }
+                    .cci-marker { position: absolute; top: -2px; width: 12px; height: 12px; background: #fff; border: 2px solid #3b82f6; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 8px rgba(59,130,246,0.6); }
+                </style>
                 <div style="margin-top: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
                     <div class="range-bar">
@@ -917,11 +1049,23 @@
                         <span class="metric-label">BB ➡️</span>
                         <span class="metric-value">middle</span>
                     </div>
-                    <div class="metric">
-                        <span class="metric-label">CCI120</span>
-                        <span class="metric-value negative">146 超买</span>
+                    <div class="metric" style="grid-column: span 2;">
+                        <span class="metric-label">CCI 120</span>
+                        <div class="cci-container">
+                            <div class="cci-scale">
+                                <div class="cci-zero"></div>
+                                <div class="cci-marker" style="left: 86.6%;"></div>
+                            </div>
+                            <span class="metric-value negative">146</span>
+                        </div>
                     </div>
                 </div>
+                <style>
+                    .cci-container { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+                    .cci-scale { position: relative; flex: 1; height: 8px; background: linear-gradient(90deg, #ef4444 0%, #facc15 25%, #22c55e 50%, #facc15 75%, #ef4444 100%); border-radius: 4px; overflow: hidden; }
+                    .cci-zero { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.5); }
+                    .cci-marker { position: absolute; top: -2px; width: 12px; height: 12px; background: #fff; border: 2px solid #3b82f6; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 8px rgba(59,130,246,0.6); }
+                </style>
                 <div style="margin-top: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
                     <div class="range-bar">
@@ -965,11 +1109,23 @@
                         <span class="metric-label">BB 📉</span>
                         <span class="metric-value">lower</span>
                     </div>
-                    <div class="metric">
-                        <span class="metric-label">CCI120</span>
-                        <span class="metric-value ">74 中性</span>
+                    <div class="metric" style="grid-column: span 2;">
+                        <span class="metric-label">CCI 120</span>
+                        <div class="cci-container">
+                            <div class="cci-scale">
+                                <div class="cci-zero"></div>
+                                <div class="cci-marker" style="left: 68.6%;"></div>
+                            </div>
+                            <span class="metric-value ">74</span>
+                        </div>
                     </div>
                 </div>
+                <style>
+                    .cci-container { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+                    .cci-scale { position: relative; flex: 1; height: 8px; background: linear-gradient(90deg, #ef4444 0%, #facc15 25%, #22c55e 50%, #facc15 75%, #ef4444 100%); border-radius: 4px; overflow: hidden; }
+                    .cci-zero { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.5); }
+                    .cci-marker { position: absolute; top: -2px; width: 12px; height: 12px; background: #fff; border: 2px solid #3b82f6; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 8px rgba(59,130,246,0.6); }
+                </style>
                 <div style="margin-top: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
                     <div class="range-bar">
@@ -1013,11 +1169,23 @@
                         <span class="metric-label">BB 📉</span>
                         <span class="metric-value">lower</span>
                     </div>
-                    <div class="metric">
-                        <span class="metric-label">CCI120</span>
-                        <span class="metric-value ">53 中性</span>
+                    <div class="metric" style="grid-column: span 2;">
+                        <span class="metric-label">CCI 120</span>
+                        <div class="cci-container">
+                            <div class="cci-scale">
+                                <div class="cci-zero"></div>
+                                <div class="cci-marker" style="left: 63.3%;"></div>
+                            </div>
+                            <span class="metric-value ">53</span>
+                        </div>
                     </div>
                 </div>
+                <style>
+                    .cci-container { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+                    .cci-scale { position: relative; flex: 1; height: 8px; background: linear-gradient(90deg, #ef4444 0%, #facc15 25%, #22c55e 50%, #facc15 75%, #ef4444 100%); border-radius: 4px; overflow: hidden; }
+                    .cci-zero { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.5); }
+                    .cci-marker { position: absolute; top: -2px; width: 12px; height: 12px; background: #fff; border: 2px solid #3b82f6; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 8px rgba(59,130,246,0.6); }
+                </style>
                 <div style="margin-top: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
                     <div class="range-bar">
@@ -1061,11 +1229,23 @@
                         <span class="metric-label">BB 📉</span>
                         <span class="metric-value">lower</span>
                     </div>
-                    <div class="metric">
-                        <span class="metric-label">CCI120</span>
-                        <span class="metric-value ">55 中性</span>
+                    <div class="metric" style="grid-column: span 2;">
+                        <span class="metric-label">CCI 120</span>
+                        <div class="cci-container">
+                            <div class="cci-scale">
+                                <div class="cci-zero"></div>
+                                <div class="cci-marker" style="left: 63.7%;"></div>
+                            </div>
+                            <span class="metric-value ">55</span>
+                        </div>
                     </div>
                 </div>
+                <style>
+                    .cci-container { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+                    .cci-scale { position: relative; flex: 1; height: 8px; background: linear-gradient(90deg, #ef4444 0%, #facc15 25%, #22c55e 50%, #facc15 75%, #ef4444 100%); border-radius: 4px; overflow: hidden; }
+                    .cci-zero { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.5); }
+                    .cci-marker { position: absolute; top: -2px; width: 12px; height: 12px; background: #fff; border: 2px solid #3b82f6; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 8px rgba(59,130,246,0.6); }
+                </style>
                 <div style="margin-top: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
                     <div class="range-bar">
@@ -1116,11 +1296,23 @@
                         <span class="metric-label">BB ➡️</span>
                         <span class="metric-value">middle</span>
                     </div>
-                    <div class="metric">
-                        <span class="metric-label">CCI120</span>
-                        <span class="metric-value negative">125 超买</span>
+                    <div class="metric" style="grid-column: span 2;">
+                        <span class="metric-label">CCI 120</span>
+                        <div class="cci-container">
+                            <div class="cci-scale">
+                                <div class="cci-zero"></div>
+                                <div class="cci-marker" style="left: 81.2%;"></div>
+                            </div>
+                            <span class="metric-value negative">125</span>
+                        </div>
                     </div>
                 </div>
+                <style>
+                    .cci-container { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+                    .cci-scale { position: relative; flex: 1; height: 8px; background: linear-gradient(90deg, #ef4444 0%, #facc15 25%, #22c55e 50%, #facc15 75%, #ef4444 100%); border-radius: 4px; overflow: hidden; }
+                    .cci-zero { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.5); }
+                    .cci-marker { position: absolute; top: -2px; width: 12px; height: 12px; background: #fff; border: 2px solid #3b82f6; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 8px rgba(59,130,246,0.6); }
+                </style>
                 <div style="margin-top: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
                     <div class="range-bar">
@@ -1164,11 +1356,23 @@
                         <span class="metric-label">BB ➡️</span>
                         <span class="metric-value">middle</span>
                     </div>
-                    <div class="metric">
-                        <span class="metric-label">CCI120</span>
-                        <span class="metric-value negative">165 超买</span>
+                    <div class="metric" style="grid-column: span 2;">
+                        <span class="metric-label">CCI 120</span>
+                        <div class="cci-container">
+                            <div class="cci-scale">
+                                <div class="cci-zero"></div>
+                                <div class="cci-marker" style="left: 91.3%;"></div>
+                            </div>
+                            <span class="metric-value negative">165</span>
+                        </div>
                     </div>
                 </div>
+                <style>
+                    .cci-container { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+                    .cci-scale { position: relative; flex: 1; height: 8px; background: linear-gradient(90deg, #ef4444 0%, #facc15 25%, #22c55e 50%, #facc15 75%, #ef4444 100%); border-radius: 4px; overflow: hidden; }
+                    .cci-zero { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.5); }
+                    .cci-marker { position: absolute; top: -2px; width: 12px; height: 12px; background: #fff; border: 2px solid #3b82f6; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 8px rgba(59,130,246,0.6); }
+                </style>
                 <div style="margin-top: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
                     <div class="range-bar">
@@ -1212,11 +1416,23 @@
                         <span class="metric-label">BB ➡️</span>
                         <span class="metric-value">middle</span>
                     </div>
-                    <div class="metric">
-                        <span class="metric-label">CCI120</span>
-                        <span class="metric-value ">-40 中性</span>
+                    <div class="metric" style="grid-column: span 2;">
+                        <span class="metric-label">CCI 120</span>
+                        <div class="cci-container">
+                            <div class="cci-scale">
+                                <div class="cci-zero"></div>
+                                <div class="cci-marker" style="left: 40.0%;"></div>
+                            </div>
+                            <span class="metric-value ">-40</span>
+                        </div>
                     </div>
                 </div>
+                <style>
+                    .cci-container { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+                    .cci-scale { position: relative; flex: 1; height: 8px; background: linear-gradient(90deg, #ef4444 0%, #facc15 25%, #22c55e 50%, #facc15 75%, #ef4444 100%); border-radius: 4px; overflow: hidden; }
+                    .cci-zero { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.5); }
+                    .cci-marker { position: absolute; top: -2px; width: 12px; height: 12px; background: #fff; border: 2px solid #3b82f6; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 8px rgba(59,130,246,0.6); }
+                </style>
                 <div style="margin-top: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
                     <div class="range-bar">
@@ -1267,11 +1483,23 @@
                         <span class="metric-label">BB ➡️</span>
                         <span class="metric-value">middle</span>
                     </div>
-                    <div class="metric">
-                        <span class="metric-label">CCI120</span>
-                        <span class="metric-value ">0 中性</span>
+                    <div class="metric" style="grid-column: span 2;">
+                        <span class="metric-label">CCI 120</span>
+                        <div class="cci-container">
+                            <div class="cci-scale">
+                                <div class="cci-zero"></div>
+                                <div class="cci-marker" style="left: 50.0%;"></div>
+                            </div>
+                            <span class="metric-value ">0</span>
+                        </div>
                     </div>
                 </div>
+                <style>
+                    .cci-container { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+                    .cci-scale { position: relative; flex: 1; height: 8px; background: linear-gradient(90deg, #ef4444 0%, #facc15 25%, #22c55e 50%, #facc15 75%, #ef4444 100%); border-radius: 4px; overflow: hidden; }
+                    .cci-zero { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.5); }
+                    .cci-marker { position: absolute; top: -2px; width: 12px; height: 12px; background: #fff; border: 2px solid #3b82f6; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 8px rgba(59,130,246,0.6); }
+                </style>
                 <div style="margin-top: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
                     <div class="range-bar">
@@ -1315,11 +1543,23 @@
                         <span class="metric-label">BB ➡️</span>
                         <span class="metric-value">middle</span>
                     </div>
-                    <div class="metric">
-                        <span class="metric-label">CCI120</span>
-                        <span class="metric-value ">0 中性</span>
+                    <div class="metric" style="grid-column: span 2;">
+                        <span class="metric-label">CCI 120</span>
+                        <div class="cci-container">
+                            <div class="cci-scale">
+                                <div class="cci-zero"></div>
+                                <div class="cci-marker" style="left: 50.0%;"></div>
+                            </div>
+                            <span class="metric-value ">0</span>
+                        </div>
                     </div>
                 </div>
+                <style>
+                    .cci-container { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+                    .cci-scale { position: relative; flex: 1; height: 8px; background: linear-gradient(90deg, #ef4444 0%, #facc15 25%, #22c55e 50%, #facc15 75%, #ef4444 100%); border-radius: 4px; overflow: hidden; }
+                    .cci-zero { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.5); }
+                    .cci-marker { position: absolute; top: -2px; width: 12px; height: 12px; background: #fff; border: 2px solid #3b82f6; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 8px rgba(59,130,246,0.6); }
+                </style>
                 <div style="margin-top: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
                     <div class="range-bar">
@@ -1363,11 +1603,23 @@
                         <span class="metric-label">BB ➡️</span>
                         <span class="metric-value">middle</span>
                     </div>
-                    <div class="metric">
-                        <span class="metric-label">CCI120</span>
-                        <span class="metric-value negative">132 超买</span>
+                    <div class="metric" style="grid-column: span 2;">
+                        <span class="metric-label">CCI 120</span>
+                        <div class="cci-container">
+                            <div class="cci-scale">
+                                <div class="cci-zero"></div>
+                                <div class="cci-marker" style="left: 82.9%;"></div>
+                            </div>
+                            <span class="metric-value negative">132</span>
+                        </div>
                     </div>
                 </div>
+                <style>
+                    .cci-container { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+                    .cci-scale { position: relative; flex: 1; height: 8px; background: linear-gradient(90deg, #ef4444 0%, #facc15 25%, #22c55e 50%, #facc15 75%, #ef4444 100%); border-radius: 4px; overflow: hidden; }
+                    .cci-zero { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.5); }
+                    .cci-marker { position: absolute; top: -2px; width: 12px; height: 12px; background: #fff; border: 2px solid #3b82f6; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 8px rgba(59,130,246,0.6); }
+                </style>
                 <div style="margin-top: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
                     <div class="range-bar">
@@ -1392,9 +1644,9 @@
                     <div class="asset-trend">🔴下跌</div>
                 </div>
                 <div class="price-row">
-                    <div class="asset-price">$66,394.05</div>
+                    <div class="asset-price">$66,424.18</div>
                     <span class="asset-change negative">
-                        -0.89%
+                        -0.85%
                     </span>
                 </div>
                 <div class="asset-metrics">
@@ -1412,17 +1664,29 @@
                     </div>
                     <div class="metric">
                         <span class="metric-label">MA120</span>
-                        <span class="metric-value">$92,151.33</span>
+                        <span class="metric-value">$92,151.58</span>
                     </div>
                     <div class="metric">
-                        <span class="metric-label">BB 📉</span>
-                        <span class="metric-value">lower</span>
+                        <span class="metric-label">BB ➡️</span>
+                        <span class="metric-value">middle</span>
                     </div>
-                    <div class="metric">
-                        <span class="metric-label">CCI120</span>
-                        <span class="metric-value positive">-218 超卖</span>
+                    <div class="metric" style="grid-column: span 2;">
+                        <span class="metric-label">CCI 120</span>
+                        <div class="cci-container">
+                            <div class="cci-scale">
+                                <div class="cci-zero"></div>
+                                <div class="cci-marker" style="left: 0.0%;"></div>
+                            </div>
+                            <span class="metric-value positive">-218</span>
+                        </div>
                     </div>
                 </div>
+                <style>
+                    .cci-container { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+                    .cci-scale { position: relative; flex: 1; height: 8px; background: linear-gradient(90deg, #ef4444 0%, #facc15 25%, #22c55e 50%, #facc15 75%, #ef4444 100%); border-radius: 4px; overflow: hidden; }
+                    .cci-zero { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.5); }
+                    .cci-marker { position: absolute; top: -2px; width: 12px; height: 12px; background: #fff; border: 2px solid #3b82f6; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 8px rgba(59,130,246,0.6); }
+                </style>
                 <div style="margin-top: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
                     <div class="range-bar">
@@ -1440,15 +1704,15 @@
                     <div class="asset-trend">🔴下跌</div>
                 </div>
                 <div class="price-row">
-                    <div class="asset-price">$1,942.78</div>
+                    <div class="asset-price">$1,946.05</div>
                     <span class="asset-change positive">
-                        +0.11%
+                        +0.28%
                     </span>
                 </div>
                 <div class="asset-metrics">
                     <div class="metric">
                         <span class="metric-label">YTD</span>
-                        <span class="metric-value negative">-34.5%</span>
+                        <span class="metric-value negative">-34.4%</span>
                     </div>
                     <div class="metric">
                         <span class="metric-label">RSI(23)</span>
@@ -1460,21 +1724,33 @@
                     </div>
                     <div class="metric">
                         <span class="metric-label">MA120</span>
-                        <span class="metric-value">$3,106.04</span>
+                        <span class="metric-value">$3,106.07</span>
                     </div>
                     <div class="metric">
                         <span class="metric-label">BB ➡️</span>
                         <span class="metric-value">middle</span>
                     </div>
-                    <div class="metric">
-                        <span class="metric-label">CCI120</span>
-                        <span class="metric-value positive">-226 超卖</span>
+                    <div class="metric" style="grid-column: span 2;">
+                        <span class="metric-label">CCI 120</span>
+                        <div class="cci-container">
+                            <div class="cci-scale">
+                                <div class="cci-zero"></div>
+                                <div class="cci-marker" style="left: 0.0%;"></div>
+                            </div>
+                            <span class="metric-value positive">-226</span>
+                        </div>
                     </div>
                 </div>
+                <style>
+                    .cci-container { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+                    .cci-scale { position: relative; flex: 1; height: 8px; background: linear-gradient(90deg, #ef4444 0%, #facc15 25%, #22c55e 50%, #facc15 75%, #ef4444 100%); border-radius: 4px; overflow: hidden; }
+                    .cci-zero { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.5); }
+                    .cci-marker { position: absolute; top: -2px; width: 12px; height: 12px; background: #fff; border: 2px solid #3b82f6; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 8px rgba(59,130,246,0.6); }
+                </style>
                 <div style="margin-top: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
                     <div class="range-bar">
-                        <div class="range-indicator" style="left: 6.1%;"></div>
+                        <div class="range-indicator" style="left: 6.2%;"></div>
                     </div>
                 </div>
             </div>
@@ -1488,9 +1764,9 @@
                     <div class="asset-trend">🔴下跌</div>
                 </div>
                 <div class="price-row">
-                    <div class="asset-price">$78.52</div>
+                    <div class="asset-price">$78.59</div>
                     <span class="asset-change negative">
-                        -0.93%
+                        -0.83%
                     </span>
                 </div>
                 <div class="asset-metrics">
@@ -1514,15 +1790,27 @@
                         <span class="metric-label">BB 📉</span>
                         <span class="metric-value">lower</span>
                     </div>
-                    <div class="metric">
-                        <span class="metric-label">CCI120</span>
-                        <span class="metric-value positive">-204 超卖</span>
+                    <div class="metric" style="grid-column: span 2;">
+                        <span class="metric-label">CCI 120</span>
+                        <div class="cci-container">
+                            <div class="cci-scale">
+                                <div class="cci-zero"></div>
+                                <div class="cci-marker" style="left: 0.0%;"></div>
+                            </div>
+                            <span class="metric-value positive">-204</span>
+                        </div>
                     </div>
                 </div>
+                <style>
+                    .cci-container { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+                    .cci-scale { position: relative; flex: 1; height: 8px; background: linear-gradient(90deg, #ef4444 0%, #facc15 25%, #22c55e 50%, #facc15 75%, #ef4444 100%); border-radius: 4px; overflow: hidden; }
+                    .cci-zero { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.5); }
+                    .cci-marker { position: absolute; top: -2px; width: 12px; height: 12px; background: #fff; border: 2px solid #3b82f6; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 8px rgba(59,130,246,0.6); }
+                </style>
                 <div style="margin-top: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
                     <div class="range-bar">
-                        <div class="range-indicator" style="left: 5.3%;"></div>
+                        <div class="range-indicator" style="left: 5.4%;"></div>
                     </div>
                 </div>
             </div>
@@ -1538,7 +1826,7 @@
                 <div class="price-row">
                     <div class="asset-price">$0.38</div>
                     <span class="asset-change positive">
-                        +3.26%
+                        +3.30%
                     </span>
                 </div>
                 <div class="asset-metrics">
@@ -1562,11 +1850,23 @@
                         <span class="metric-label">BB ➡️</span>
                         <span class="metric-value">middle</span>
                     </div>
-                    <div class="metric">
-                        <span class="metric-label">CCI120</span>
-                        <span class="metric-value positive">-129 超卖</span>
+                    <div class="metric" style="grid-column: span 2;">
+                        <span class="metric-label">CCI 120</span>
+                        <div class="cci-container">
+                            <div class="cci-scale">
+                                <div class="cci-zero"></div>
+                                <div class="cci-marker" style="left: 17.9%;"></div>
+                            </div>
+                            <span class="metric-value positive">-129</span>
+                        </div>
                     </div>
                 </div>
+                <style>
+                    .cci-container { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+                    .cci-scale { position: relative; flex: 1; height: 8px; background: linear-gradient(90deg, #ef4444 0%, #facc15 25%, #22c55e 50%, #facc15 75%, #ef4444 100%); border-radius: 4px; overflow: hidden; }
+                    .cci-zero { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.5); }
+                    .cci-marker { position: absolute; top: -2px; width: 12px; height: 12px; background: #fff; border: 2px solid #3b82f6; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 8px rgba(59,130,246,0.6); }
+                </style>
                 <div style="margin-top: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
                     <div class="range-bar">
@@ -1617,11 +1917,23 @@
                         <span class="metric-label">BB 📈</span>
                         <span class="metric-value">upper</span>
                     </div>
-                    <div class="metric">
-                        <span class="metric-label">CCI120</span>
-                        <span class="metric-value ">94 中性</span>
+                    <div class="metric" style="grid-column: span 2;">
+                        <span class="metric-label">CCI 120</span>
+                        <div class="cci-container">
+                            <div class="cci-scale">
+                                <div class="cci-zero"></div>
+                                <div class="cci-marker" style="left: 73.4%;"></div>
+                            </div>
+                            <span class="metric-value ">94</span>
+                        </div>
                     </div>
                 </div>
+                <style>
+                    .cci-container { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+                    .cci-scale { position: relative; flex: 1; height: 8px; background: linear-gradient(90deg, #ef4444 0%, #facc15 25%, #22c55e 50%, #facc15 75%, #ef4444 100%); border-radius: 4px; overflow: hidden; }
+                    .cci-zero { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.5); }
+                    .cci-marker { position: absolute; top: -2px; width: 12px; height: 12px; background: #fff; border: 2px solid #3b82f6; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 8px rgba(59,130,246,0.6); }
+                </style>
                 <div style="margin-top: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
                     <div class="range-bar">
@@ -1665,11 +1977,23 @@
                         <span class="metric-label">BB ➡️</span>
                         <span class="metric-value">middle</span>
                     </div>
-                    <div class="metric">
-                        <span class="metric-label">CCI120</span>
-                        <span class="metric-value ">-35 中性</span>
+                    <div class="metric" style="grid-column: span 2;">
+                        <span class="metric-label">CCI 120</span>
+                        <div class="cci-container">
+                            <div class="cci-scale">
+                                <div class="cci-zero"></div>
+                                <div class="cci-marker" style="left: 41.3%;"></div>
+                            </div>
+                            <span class="metric-value ">-35</span>
+                        </div>
                     </div>
                 </div>
+                <style>
+                    .cci-container { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+                    .cci-scale { position: relative; flex: 1; height: 8px; background: linear-gradient(90deg, #ef4444 0%, #facc15 25%, #22c55e 50%, #facc15 75%, #ef4444 100%); border-radius: 4px; overflow: hidden; }
+                    .cci-zero { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.5); }
+                    .cci-marker { position: absolute; top: -2px; width: 12px; height: 12px; background: #fff; border: 2px solid #3b82f6; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 8px rgba(59,130,246,0.6); }
+                </style>
                 <div style="margin-top: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
                     <div class="range-bar">
@@ -1713,11 +2037,23 @@
                         <span class="metric-label">BB 📈</span>
                         <span class="metric-value">upper</span>
                     </div>
-                    <div class="metric">
-                        <span class="metric-label">CCI120</span>
-                        <span class="metric-value ">80 中性</span>
+                    <div class="metric" style="grid-column: span 2;">
+                        <span class="metric-label">CCI 120</span>
+                        <div class="cci-container">
+                            <div class="cci-scale">
+                                <div class="cci-zero"></div>
+                                <div class="cci-marker" style="left: 70.0%;"></div>
+                            </div>
+                            <span class="metric-value ">80</span>
+                        </div>
                     </div>
                 </div>
+                <style>
+                    .cci-container { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+                    .cci-scale { position: relative; flex: 1; height: 8px; background: linear-gradient(90deg, #ef4444 0%, #facc15 25%, #22c55e 50%, #facc15 75%, #ef4444 100%); border-radius: 4px; overflow: hidden; }
+                    .cci-zero { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.5); }
+                    .cci-marker { position: absolute; top: -2px; width: 12px; height: 12px; background: #fff; border: 2px solid #3b82f6; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 8px rgba(59,130,246,0.6); }
+                </style>
                 <div style="margin-top: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
                     <div class="range-bar">
@@ -1761,11 +2097,23 @@
                         <span class="metric-label">BB 📈</span>
                         <span class="metric-value">upper</span>
                     </div>
-                    <div class="metric">
-                        <span class="metric-label">CCI120</span>
-                        <span class="metric-value negative">142 超买</span>
+                    <div class="metric" style="grid-column: span 2;">
+                        <span class="metric-label">CCI 120</span>
+                        <div class="cci-container">
+                            <div class="cci-scale">
+                                <div class="cci-zero"></div>
+                                <div class="cci-marker" style="left: 85.5%;"></div>
+                            </div>
+                            <span class="metric-value negative">142</span>
+                        </div>
                     </div>
                 </div>
+                <style>
+                    .cci-container { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+                    .cci-scale { position: relative; flex: 1; height: 8px; background: linear-gradient(90deg, #ef4444 0%, #facc15 25%, #22c55e 50%, #facc15 75%, #ef4444 100%); border-radius: 4px; overflow: hidden; }
+                    .cci-zero { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.5); }
+                    .cci-marker { position: absolute; top: -2px; width: 12px; height: 12px; background: #fff; border: 2px solid #3b82f6; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 8px rgba(59,130,246,0.6); }
+                </style>
                 <div style="margin-top: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
                     <div class="range-bar">
@@ -1809,11 +2157,23 @@
                         <span class="metric-label">BB 📈</span>
                         <span class="metric-value">upper</span>
                     </div>
-                    <div class="metric">
-                        <span class="metric-label">CCI120</span>
-                        <span class="metric-value negative">159 超买</span>
+                    <div class="metric" style="grid-column: span 2;">
+                        <span class="metric-label">CCI 120</span>
+                        <div class="cci-container">
+                            <div class="cci-scale">
+                                <div class="cci-zero"></div>
+                                <div class="cci-marker" style="left: 89.8%;"></div>
+                            </div>
+                            <span class="metric-value negative">159</span>
+                        </div>
                     </div>
                 </div>
+                <style>
+                    .cci-container { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+                    .cci-scale { position: relative; flex: 1; height: 8px; background: linear-gradient(90deg, #ef4444 0%, #facc15 25%, #22c55e 50%, #facc15 75%, #ef4444 100%); border-radius: 4px; overflow: hidden; }
+                    .cci-zero { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.5); }
+                    .cci-marker { position: absolute; top: -2px; width: 12px; height: 12px; background: #fff; border: 2px solid #3b82f6; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 8px rgba(59,130,246,0.6); }
+                </style>
                 <div style="margin-top: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
                     <div class="range-bar">
@@ -1857,11 +2217,23 @@
                         <span class="metric-label">BB ➡️</span>
                         <span class="metric-value">middle</span>
                     </div>
-                    <div class="metric">
-                        <span class="metric-label">CCI120</span>
-                        <span class="metric-value negative">131 超买</span>
+                    <div class="metric" style="grid-column: span 2;">
+                        <span class="metric-label">CCI 120</span>
+                        <div class="cci-container">
+                            <div class="cci-scale">
+                                <div class="cci-zero"></div>
+                                <div class="cci-marker" style="left: 82.7%;"></div>
+                            </div>
+                            <span class="metric-value negative">131</span>
+                        </div>
                     </div>
                 </div>
+                <style>
+                    .cci-container { display: flex; align-items: center; gap: 8px; margin-top: 4px; }
+                    .cci-scale { position: relative; flex: 1; height: 8px; background: linear-gradient(90deg, #ef4444 0%, #facc15 25%, #22c55e 50%, #facc15 75%, #ef4444 100%); border-radius: 4px; overflow: hidden; }
+                    .cci-zero { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.5); }
+                    .cci-marker { position: absolute; top: -2px; width: 12px; height: 12px; background: #fff; border: 2px solid #3b82f6; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 8px rgba(59,130,246,0.6); }
+                </style>
                 <div style="margin-top: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
                     <div class="range-bar">
@@ -1900,7 +2272,7 @@
                 <div class="advisory-details">
                     <div class="detail-row">
                         <span>价格</span>
-                        <strong>$1942.78</strong>
+                        <strong>$1946.05</strong>
                     </div>
                     <div class="detail-row">
                         <span>建议仓位</span>
@@ -1908,7 +2280,7 @@
                     </div>
                     <div class="detail-row">
                         <span>止损/止盈</span>
-                        <strong>$1713.99 / $2171.56</strong>
+                        <strong>$1716.75 / $2175.34</strong>
                     </div>
                     <div class="detail-row">
                         <span>风险等级</span>
@@ -1963,46 +2335,6 @@
             <div class="advisory-card">
                 <div class="advisory-header">
                     <div class="advisory-rank">#3</div>
-                    <div class="advisory-symbol">BTC-USD</div>
-                    <div class="advisory-consensus weak-buy">
-                        🟢 轻仓买入
-                    </div>
-                </div>
-                <div class="advisory-score">
-                    <div class="score-bar">
-                        <div class="score-fill" style="width: 60.0%; background: #86efac;"></div>
-                    </div>
-                    <div class="score-value">60分</div>
-                </div>
-                <div class="advisory-experts">
-                    <span class='expert-tag sell'>趋势:卖</span> <span class='expert-tag strong-buy'>均值:强烈</span> <span class='expert-tag sell'>动量:考虑减仓</span> <span class='expert-tag buy'>价值:</span> <span class='expert-tag strong-buy'>BB+CCI:强烈</span>
-                </div>
-                <div class="advisory-details">
-                    <div class="detail-row">
-                        <span>价格</span>
-                        <strong>$66394.05</strong>
-                    </div>
-                    <div class="detail-row">
-                        <span>建议仓位</span>
-                        <strong>5-10%</strong>
-                    </div>
-                    <div class="detail-row">
-                        <span>止损/止盈</span>
-                        <strong>$59895.22 / $72892.89</strong>
-                    </div>
-                    <div class="detail-row">
-                        <span>风险等级</span>
-                        <strong class="risk-高">高</strong>
-                    </div>
-                </div>
-                <div class="advisory-reason">
-                    💡 四专家中3位建议买入，分歧度5
-                </div>
-            </div>
-
-            <div class="advisory-card">
-                <div class="advisory-header">
-                    <div class="advisory-rank">#4</div>
                     <div class="advisory-symbol">SOL-USD</div>
                     <div class="advisory-consensus weak-buy">
                         🟢 轻仓买入
@@ -2020,7 +2352,7 @@
                 <div class="advisory-details">
                     <div class="detail-row">
                         <span>价格</span>
-                        <strong>$78.52</strong>
+                        <strong>$78.59</strong>
                     </div>
                     <div class="detail-row">
                         <span>建议仓位</span>
@@ -2028,7 +2360,7 @@
                     </div>
                     <div class="detail-row">
                         <span>止损/止盈</span>
-                        <strong>$69.51 / $87.53</strong>
+                        <strong>$69.57 / $87.61</strong>
                     </div>
                     <div class="detail-row">
                         <span>风险等级</span>
@@ -2042,7 +2374,7 @@
 
             <div class="advisory-card">
                 <div class="advisory-header">
-                    <div class="advisory-rank">#5</div>
+                    <div class="advisory-rank">#4</div>
                     <div class="advisory-symbol">^VIX</div>
                     <div class="advisory-consensus weak-buy">
                         🟢 轻仓买入
