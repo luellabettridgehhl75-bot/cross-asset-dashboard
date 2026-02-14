@@ -37,11 +37,12 @@ class AssetRecommendation:
     category: str
     current_price: float
     
-    # 四专家观点
+    # 五专家观点
     trend_expert: ExpertOpinion    # 趋势专家
     mean_rev_expert: ExpertOpinion  # 均值回归专家
     momentum_expert: ExpertOpinion  # 动量专家
     fundamental_expert: ExpertOpinion  # 基本面专家
+    bb_cci_expert: ExpertOpinion   # BB+CCI专家（用户偏好）
     
     # 综合结果
     consensus_signal: SignalStrength
@@ -89,9 +90,18 @@ class AdvisoryEngine:
         week_range = high_52w - low_52w if high_52w != low_52w else 1
         week_position = ((price - low_52w) / week_range) * 100
         
-        # === 专家1: 趋势专家 ===
+        # === 用户偏好指标 ===
+        ma_120 = data.get('ma_120', ma50)
+        bb_upper = data.get('bb_upper', price * 1.02)
+        bb_lower = data.get('bb_lower', price * 0.98)
+        bb_middle = data.get('bb_middle', price)
+        bb_position = data.get('bb_position', 'middle')
+        bb_width = data.get('bb_width', 4)
+        cci_120 = data.get('cci_120', 0)
+        
+        # === 专家1: 趋势专家 (加入120 SMA) ===
         trend_signal, trend_reason = self._trend_analysis(
-            price, ma10, ma50, change_1d
+            price, ma10, ma50, change_1d, ma_120
         )
         trend_expert = ExpertOpinion(
             expert_name="趋势专家 (Trend Following)",
@@ -125,7 +135,7 @@ class AdvisoryEngine:
             key_metrics={"YTD": change_ytd, "1D": change_1d, "RSI": rsi, "Vol": volatility}
         )
         
-        # === 专家4: 基本面/价值专家 ===
+        # === 专家4: 价值专家 ===
         fundamental_signal, fundamental_reason = self._fundamental_analysis(
             price, ma50, rsi, week_position, volatility, symbol
         )
@@ -137,9 +147,25 @@ class AdvisoryEngine:
             key_metrics={"52W_Position": week_position, "Volatility": volatility}
         )
         
-        # === 综合共识 ===
+        # === 专家5: BB+CCI专家 (用户偏好) ===
+        bb_cci_signal, bb_cci_reason = self._bb_cci_analysis(
+            price, bb_upper, bb_lower, bb_middle, bb_position, bb_width, cci_120
+        )
+        bb_cci_expert = ExpertOpinion(
+            expert_name="BB+CCI专家 (User Pref)",
+            signal=bb_cci_signal,
+            reasoning=bb_cci_reason,
+            confidence=0.85,  # 用户偏好指标权重更高
+            key_metrics={
+                "BB_Position": bb_position,
+                "BB_Width": f"{bb_width:.1f}%",
+                "CCI_120": f"{cci_120:.1f}"
+            }
+        )
+        
+        # === 综合共识（五专家） ===
         consensus_signal, consensus_score, consensus_reason, risk_level = self._calculate_consensus(
-            trend_expert, mean_rev_expert, momentum_expert, fundamental_expert
+            trend_expert, mean_rev_expert, momentum_expert, fundamental_expert, bb_cci_expert
         )
         
         # 仓位和止损建议
@@ -156,6 +182,7 @@ class AdvisoryEngine:
             mean_rev_expert=mean_rev_expert,
             momentum_expert=momentum_expert,
             fundamental_expert=fundamental_expert,
+            bb_cci_expert=bb_cci_expert,
             consensus_signal=consensus_signal,
             consensus_score=consensus_score,
             consensus_reasoning=consensus_reason,
@@ -167,18 +194,36 @@ class AdvisoryEngine:
             overall_rank=0
         )
     
-    def _trend_analysis(self, price, ma10, ma50, change_1d) -> Tuple[SignalStrength, str]:
-        """趋势专家：MA金叉死叉、价格相对于均线位置"""
+    def _trend_analysis(self, price, ma10, ma50, change_1d, ma_120=None) -> Tuple[SignalStrength, str]:
+        """趋势专家：MA金叉死叉、120 SMA趋势判断"""
         if ma50 == 0:
             return SignalStrength.HOLD, "数据不足，无法判断趋势"
+        
+        # 原有MA分析
         if price > ma10 > ma50 and change_1d > 0:
-            return SignalStrength.BUY, f"多头排列，价格${price:.2f} > MA10(${ma10:.2f}) > MA50(${ma50:.2f})"
+            signal = SignalStrength.BUY
+            reason = f"多头排列，价格${price:.2f} > MA10(${ma10:.2f}) > MA50(${ma50:.2f})"
         elif price < ma10 < ma50 and change_1d < 0:
-            return SignalStrength.SELL, f"空头排列，价格${price:.2f} < MA10(${ma10:.2f}) < MA50(${ma50:.2f})"
+            signal = SignalStrength.SELL
+            reason = f"空头排列，价格${price:.2f} < MA10(${ma10:.2f}) < MA50(${ma50:.2f})"
         elif price > ma50:
-            return SignalStrength.WEAK_BUY, f"价格在MA50上方，中期趋势向上"
+            signal = SignalStrength.WEAK_BUY
+            reason = f"价格在MA50上方，中期趋势向上"
         else:
-            return SignalStrength.HOLD, f"趋势不明朗，MA10(${ma10:.2f})与MA50(${ma50:.2f})纠缠"
+            signal = SignalStrength.HOLD
+            reason = f"趋势不明朗，MA10(${ma10:.2f})与MA50(${ma50:.2f})纠缠"
+        
+        # 加入120 SMA分析（用户偏好）
+        if ma_120 and ma_120 != 0:
+            dist_120 = (price - ma_120) / ma_120 * 100
+            if dist_120 > 5:
+                reason += f" | 120SMA上方+{dist_120:.1f}%，强势"
+            elif dist_120 < -5:
+                reason += f" | 120SMA下方{dist_120:.1f}%，偏弱"
+            else:
+                reason += f" | 120SMA附近({dist_120:+.1f}%)"
+        
+        return signal, reason
     
     def _mean_reversion_analysis(self, price, ma50, rsi, week_position, change_1d) -> Tuple[SignalStrength, str]:
         """均值回归专家：RSI超买超卖、偏离均线程度"""
@@ -216,11 +261,56 @@ class AdvisoryEngine:
             return SignalStrength.WEAK_BUY, f"低于年中值({week_position:.1f}%)，具有一定吸引力"
         else:
             return SignalStrength.HOLD, f"估值中性，处于52周{week_position:.1f}%位置"
+
+    def _bb_cci_analysis(self, price, bb_upper, bb_lower, bb_middle, bb_position, bb_width, cci_120) -> Tuple[SignalStrength, str]:
+        """
+        BB+CCI专家（用户偏好指标）
+        
+        策略：
+        - BB下轨 + CCI < -100 → 超卖买入
+        - BB上轨 + CCI > 100 → 超买卖出
+        - 中轨附近 + CCI中性 → 观望
+        """
+        # 布林带分析
+        bb_pct = ((price - bb_lower) / (bb_upper - bb_lower) * 100) if (bb_upper != bb_lower) else 50
+        
+        # 综合信号
+        # 强烈买入：BB下轨附近 + CCI超卖
+        if bb_position == 'lower' and cci_120 < -100:
+            return SignalStrength.STRONG_BUY, f"BB下轨({bb_pct:.0f}%) + CCI超卖({cci_120:.0f})，强烈反弹信号"
+        
+        # 买入：BB下轨 或 CCI超卖
+        elif bb_position == 'lower' or cci_120 < -100:
+            return SignalStrength.BUY, f"BB下轨{bb_pct:.0f}% 或 CCI={cci_120:.0f}，超卖区域"
+        
+        # 强烈卖出：BB上轨 + CCI超买
+        elif bb_position == 'upper' and cci_120 > 100:
+            return SignalStrength.SELL, f"BB上轨({bb_pct:.0f}%) + CCI超买({cci_120:.0f})，回调风险"
+        
+        # 卖出：BB上轨 或 CCI超买
+        elif bb_position == 'upper' or cci_120 > 100:
+            return SignalStrength.WEAK_SELL, f"BB上轨{bb_pct:.0f}% 或 CCI={cci_120:.0f}，超买区域"
+        
+        # 中轨附近
+        elif bb_position == 'middle':
+            if -50 < cci_120 < 50:
+                return SignalStrength.HOLD, f"BB中轨({bb_pct:.0f}%) + CCI中性({cci_120:.0f})，震荡观望"
+            elif cci_120 < -50:
+                return SignalStrength.WEAK_BUY, f"BB中轨 + CCI偏弱({cci_120:.0f})，关注下轨"
+            else:
+                return SignalStrength.WEAK_SELL, f"BB中轨 + CCI偏强({cci_120:.0f})，关注上轨"
+        
+        else:
+            return SignalStrength.HOLD, f"BB位置{bb_position}({bb_pct:.0f}%)，CCI={cci_120:.0f}"
     
-    def _calculate_consensus(self, trend, mean_rev, momentum, fundamental) -> Tuple[SignalStrength, float, str, str]:
-        """计算四专家共识"""
-        signals = [trend.signal.score, mean_rev.signal.score, momentum.signal.score, fundamental.signal.score]
-        avg_score = sum(signals) / len(signals)
+    def _calculate_consensus(self, trend, mean_rev, momentum, fundamental, bb_cci) -> Tuple[SignalStrength, float, str, str]:
+        """计算五专家共识（加入BB+CCI专家）"""
+        signals = [trend.signal.score, mean_rev.signal.score, momentum.signal.score, fundamental.signal.score, bb_cci.signal.score]
+        
+        # BB+CCI专家权重更高（用户偏好）
+        weights = [0.2, 0.2, 0.2, 0.2, 0.2]  # 平均权重，可以调整
+        weighted_score = sum(s * w for s, w in zip(signals, weights))
+        avg_score = weighted_score
         
         # 分歧度
         disagreement = max(signals) - min(signals)

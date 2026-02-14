@@ -1,11 +1,11 @@
 """
 HTML看板生成模块 - 专业版
-包含：高级指标、迷你图表、热力图、相对强弱排名
+包含：高级指标、迷你图表、热力图、相对强弱排名、四专家买入建议
 """
 
 import os
 from datetime import datetime
-from typing import Dict, List, Tuple
+from typing import Dict, List, Tuple, Optional
 import config
 
 
@@ -466,6 +466,27 @@ class DashboardGenerator:
                 week_range = high_52w - low_52w if high_52w != low_52w else 1
                 week_position = ((price - low_52w) / week_range) * 100
                 
+                # 用户偏好指标
+                ma_120 = info.get('ma_120', ma50)
+                bb_upper = info.get('bb_upper', price * 1.02)
+                bb_lower = info.get('bb_lower', price * 0.98)
+                bb_position = info.get('bb_position', 'middle')
+                cci_120 = info.get('cci_120', 0)
+                
+                # BB位置图标
+                bb_icon = "📈" if bb_position == 'upper' else ("📉" if bb_position == 'lower' else "➡️")
+                
+                # CCI信号和可视化位置
+                cci_signal = "超卖区" if cci_120 < -100 else ("超买区" if cci_120 > 100 else "震荡区")
+                cci_class = "positive" if cci_120 < -100 else ("negative" if cci_120 > 100 else "neutral")
+                
+                # CCI在-200到+200范围内的位置（用于可视化）
+                cci_viz = max(-200, min(200, cci_120))  # 限制在-200到200
+                cci_pct = ((cci_viz + 200) / 400) * 100  # 转换成0-100%
+                
+                # BB状态
+                bb_status = "下轨" if bb_position == 'lower' else ("上轨" if bb_position == 'upper' else "中轨")
+                
                 html += f"""
             <div class="asset-card">
                 <div class="asset-header">
@@ -481,7 +502,7 @@ class DashboardGenerator:
                         {change_sign}{change_pct:.2f}%
                     </span>
                 </div>
-                <div class="asset-metrics">
+                <div class="asset-metrics" style="grid-template-columns: repeat(3, 1fr);">
                     <div class="metric">
                         <span class="metric-label">YTD</span>
                         <span class="metric-value {ytd_class}">{ytd:+.1f}%</span>
@@ -491,22 +512,47 @@ class DashboardGenerator:
                         <span class="metric-value">{rsi_text}<span class="rsi-indicator {rsi_class}"></span></span>
                     </div>
                     <div class="metric">
+                        <span class="metric-label">MA120</span>
+                        <span class="metric-value">${ma_120:,.2f}</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">BB</span>
+                        <span class="metric-value">{bb_status}</span>
+                    </div>
+                    <div class="metric">
                         <span class="metric-label">波动率</span>
                         <span class="metric-value">{volatility:.1f}%</span>
                     </div>
-                    <div class="metric">
-                        <span class="metric-label">MA10</span>
-                        <span class="metric-value">${ma10:,.2f}</span>
-                    </div>
-                    <div class="metric">
-                        <span class="metric-label">MA50</span>
-                        <span class="metric-value">${ma50:,.2f}</span>
-                    </div>
-                    <div class="metric">
-                        <span class="metric-label">相对强弱</span>
-                        <span class="metric-value">{rel}</span>
+                    <div class="metric" style="grid-column: span 3;">
+                        <span class="metric-label">CCI 120 | {cci_signal}</span>
+                        <div class="cci-gauge">
+                            <div class="cci-bar">
+                                <div class="cci-line" style="left: 25%;"></div>
+                                <div class="cci-line" style="left: 50%;"></div>
+                                <div class="cci-line" style="left: 75%;"></div>
+                                <div class="cci-dot" style="left: {cci_pct:.1f}%;"></div>
+                            </div>
+                            <div class="cci-labels">
+                                <span>-200</span>
+                                <span class="cci-threshold">-100</span>
+                                <span>0</span>
+                                <span class="cci-threshold">+100</span>
+                                <span>+200</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <style>
+                    .cci-gauge {{ margin-top: 4px; }}
+                    .cci-bar {{ position: relative; height: 10px; background: linear-gradient(90deg, #dc2626 0%, #facc15 25%, #22c55e 50%, #facc15 75%, #dc2626 100%); border-radius: 5px; }}
+                    .cci-line {{ position: absolute; top: 0; bottom: 0; width: 2px; background: rgba(0,0,0,0.4); }}
+                    .cci-line:nth-child(1) {{ left: 25%; }} /* -100 */
+                    .cci-line:nth-child(2) {{ left: 50%; }} /* 0 */
+                    .cci-line:nth-child(3) {{ left: 75%; }} /* +100 */
+                    .cci-dot {{ position: absolute; top: 50%; transform: translate(-50%, -50%); width: 14px; height: 14px; background: #fff; border: 3px solid #2563eb; border-radius: 50%; box-shadow: 0 0 10px rgba(37,99,235,0.8); z-index: 10; }}
+                    .cci-labels {{ display: flex; justify-content: space-between; font-size: 9px; color: #64748b; margin-top: 2px; }}
+                    .cci-threshold {{ color: #94a3b8; font-weight: 600; }}
+                </style>
                 <div style="margin-top: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
                     <div class="range-bar">
@@ -521,9 +567,13 @@ class DashboardGenerator:
     </div>
 """
         
+        # 四专家买入建议（如果提供了建议数据）
+        if hasattr(self, 'recommendations') and self.recommendations:
+            html += self._generate_advisory_section(self.recommendations)
+        
         html += """
     <div class="footer">
-        <p>📈 跨资产实时监控系统 专业版 v1.0</p>
+        <p>📈 跨资产实时监控系统 专业版 v2.0</p>
         <p>数据来源: Yahoo Finance | 更新频率: 每小时</p>
         <p style="margin-top: 10px; color: #64748b;">⚠️ 仅供参考，不构成投资建议</p>
     </div>
@@ -533,8 +583,141 @@ class DashboardGenerator:
         
         return html
     
-    def save_dashboard(self, data: Dict) -> str:
+    def _generate_advisory_section(self, recommendations: List) -> str:
+        """生成四专家买入建议区域"""
+        from advisory import SignalStrength
+        
+        # 只显示推荐买入的（得分>=60）
+        buy_recs = [r for r in recommendations if r.consensus_score >= 60][:5]
+        
+        if not buy_recs:
+            return ""
+        
+        html = """
+    <div class="category advisory-section">
+        <div class="category-title">🏆 四专家会诊·买入推荐</div>
+        <div class="advisory-intro" style="margin-bottom: 15px; padding: 12px; background: rgba(59, 130, 246, 0.1); border-radius: 8px; font-size: 13px; color: #94a3b8;">
+            四位专家独立分析后综合投票：趋势专家(均线)、均值回归专家(RSI)、动量专家(YTD)、价值专家(52周位置)
+        </div>
+        <div class="advisory-grid">
+"""
+        
+        for rec in buy_recs:
+            # 专家信号（五专家）
+            experts = [
+                ("趋势", rec.trend_expert),
+                ("均值", rec.mean_rev_expert),
+                ("动量", rec.momentum_expert),
+                ("价值", rec.fundamental_expert),
+                ("BB+CCI", rec.bb_cci_expert)  # 用户偏好
+            ]
+            
+            expert_signals = " ".join([
+                f"<span class='expert-tag {self._signal_to_class(e.signal)}'>{name}:{e.signal.cn_name.replace('买入', '').replace('卖出', '卖').replace('轻仓', '轻')}</span>"
+                for name, e in experts
+            ])
+            
+            html += f"""
+            <div class="advisory-card">
+                <div class="advisory-header">
+                    <div class="advisory-rank">#{rec.overall_rank}</div>
+                    <div class="advisory-symbol">{rec.symbol}</div>
+                    <div class="advisory-consensus {self._signal_to_class(rec.consensus_signal)}">
+                        {rec.consensus_signal.icon} {rec.consensus_signal.cn_name}
+                    </div>
+                </div>
+                <div class="advisory-score">
+                    <div class="score-bar">
+                        <div class="score-fill" style="width: {rec.consensus_score}%; background: {self._score_to_color(rec.consensus_score)};"></div>
+                    </div>
+                    <div class="score-value">{rec.consensus_score:.0f}分</div>
+                </div>
+                <div class="advisory-experts">
+                    {expert_signals}
+                </div>
+                <div class="advisory-details">
+                    <div class="detail-row">
+                        <span>价格</span>
+                        <strong>${rec.current_price:.2f}</strong>
+                    </div>
+                    <div class="detail-row">
+                        <span>建议仓位</span>
+                        <strong>{rec.position_size}</strong>
+                    </div>
+                    <div class="detail-row">
+                        <span>止损/止盈</span>
+                        <strong>${rec.stop_loss:.2f} / ${rec.take_profit:.2f}</strong>
+                    </div>
+                    <div class="detail-row">
+                        <span>风险等级</span>
+                        <strong class="risk-{rec.risk_level}">{rec.risk_level}</strong>
+                    </div>
+                </div>
+                <div class="advisory-reason">
+                    💡 {rec.consensus_reasoning}
+                </div>
+            </div>
+"""
+        
+        html += """
+        </div>
+    </div>
+    <style>
+        .advisory-section { margin-bottom: 30px; }
+        .advisory-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 15px; }
+        .advisory-card { background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.8)); border: 1px solid rgba(148, 163, 184, 0.15); border-radius: 16px; padding: 18px; transition: all 0.3s; }
+        .advisory-card:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .advisory-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+        .advisory-rank { width: 32px; height: 32px; background: linear-gradient(135deg, #3b82f6, #8b5cf6); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
+        .advisory-symbol { font-size: 20px; font-weight: 700; flex: 1; }
+        .advisory-consensus { padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: 600; }
+        .advisory-consensus.strong-buy { background: rgba(74, 222, 128, 0.2); color: #4ade80; }
+        .advisory-consensus.buy { background: rgba(74, 222, 128, 0.15); color: #4ade80; }
+        .advisory-consensus.weak-buy { background: rgba(74, 222, 128, 0.1); color: #86efac; }
+        .advisory-score { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+        .score-bar { flex: 1; height: 6px; background: rgba(148, 163, 184, 0.2); border-radius: 3px; overflow: hidden; }
+        .score-fill { height: 100%; border-radius: 3px; transition: width 0.5s; }
+        .score-value { font-size: 14px; font-weight: 700; min-width: 45px; }
+        .advisory-experts { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+        .expert-tag { padding: 4px 8px; border-radius: 4px; font-size: 11px; }
+        .expert-tag.strong-buy, .expert-tag.buy { background: rgba(74, 222, 128, 0.15); color: #4ade80; }
+        .expert-tag.weak-buy { background: rgba(250, 204, 21, 0.15); color: #facc15; }
+        .expert-tag.hold { background: rgba(148, 163, 184, 0.15); color: #94a3b8; }
+        .expert-tag.sell { background: rgba(248, 113, 113, 0.15); color: #f87171; }
+        .advisory-details { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 12px; }
+        .detail-row { display: flex; justify-content: space-between; padding: 6px 10px; background: rgba(15, 23, 42, 0.4); border-radius: 6px; font-size: 12px; }
+        .detail-row span { color: #64748b; }
+        .risk-低 { color: #4ade80; }
+        .risk-中 { color: #facc15; }
+        .risk-高 { color: #f87171; }
+        .advisory-reason { font-size: 12px; color: #94a3b8; line-height: 1.5; padding: 10px; background: rgba(15, 23, 42, 0.3); border-radius: 8px; }
+    </style>
+"""
+        return html
+    
+    def _signal_to_class(self, signal) -> str:
+        """信号转CSS类"""
+        from advisory import SignalStrength
+        mapping = {
+            SignalStrength.STRONG_BUY: 'strong-buy',
+            SignalStrength.BUY: 'buy',
+            SignalStrength.WEAK_BUY: 'weak-buy',
+            SignalStrength.HOLD: 'hold',
+            SignalStrength.WEAK_SELL: 'sell',
+            SignalStrength.SELL: 'sell'
+        }
+        return mapping.get(signal, 'hold')
+    
+    def _score_to_color(self, score: float) -> str:
+        """分数转颜色"""
+        if score >= 80: return '#4ade80'
+        if score >= 60: return '#86efac'
+        if score >= 40: return '#facc15'
+        return '#f87171'
+    
+    def save_dashboard(self, data: Dict, recommendations: Optional[List] = None) -> str:
         """保存看板到文件"""
+        self.recommendations = recommendations
         html = self.generate_html(data)
         filepath = os.path.join(self.output_dir, config.HTML_FILENAME)
         

@@ -14,6 +14,7 @@ from data_fetcher import DataFetcher
 from indicators import process_all_assets
 from dashboard import DashboardGenerator
 from telegram_bot import TelegramBot
+from advisory import AdvisoryEngine
 import config
 
 
@@ -38,19 +39,29 @@ def main(send_telegram: bool = False):
     print("\n📐 正在计算技术指标...")
     processed_data = process_all_assets(raw_data)
     
-    # 3. 生成看板
+    # 3. 四专家会诊分析
+    print("\n🏆 四专家会诊分析中...")
+    advisory = AdvisoryEngine()
+    recommendations = advisory.analyze_all(processed_data)
+    top_picks = advisory.get_top_picks(recommendations, n=5)
+    
+    print(f"   发现 {len(top_picks)} 个买入机会")
+    for rec in top_picks[:3]:
+        print(f"   #{rec.overall_rank} {rec.symbol}: {rec.consensus_signal.cn_name} ({rec.consensus_score:.0f}分)")
+    
+    # 4. 生成看板
     print("\n🎨 正在生成HTML看板...")
     generator = DashboardGenerator()
-    dashboard_path = generator.save_dashboard(processed_data)
+    dashboard_path = generator.save_dashboard(processed_data, recommendations)
     print(f"✅ 看板已保存: {dashboard_path}")
     
-    # 4. 发送Telegram通知（可选）
+    # 5. 发送Telegram通知（可选）
     if send_telegram:
         print("\n📱 正在发送Telegram通知...")
         bot = TelegramBot()
-        bot.send_summary(processed_data)
+        bot.send_summary(processed_data, recommendations)
     
-    # 5. 打印摘要
+    # 6. 打印摘要
     print("\n" + "=" * 60)
     print("📈 监控摘要")
     print("=" * 60)

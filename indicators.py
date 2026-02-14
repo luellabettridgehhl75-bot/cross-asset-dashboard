@@ -63,6 +63,77 @@ class IndicatorCalculator:
         return rsi.iloc[-1] if not pd.isna(rsi.iloc[-1]) else 50.0
     
     @staticmethod
+    def calculate_bollinger_bands(df: pd.DataFrame, period: int = 20, std_dev: int = 2) -> Tuple[float, float, float]:
+        """
+        计算布林带 (Bollinger Bands)
+        
+        Returns:
+            (上轨, 中轨, 下轨)
+        """
+        if len(df) < period:
+            current_price = df['Close'].iloc[-1]
+            return current_price * 1.02, current_price, current_price * 0.98
+        
+        sma = df['Close'].rolling(window=period).mean()
+        std = df['Close'].rolling(window=period).std()
+        
+        upper_band = sma + (std * std_dev)
+        lower_band = sma - (std * std_dev)
+        
+        return (
+            upper_band.iloc[-1],
+            sma.iloc[-1],
+            lower_band.iloc[-1]
+        )
+    
+    @staticmethod
+    def calculate_cci(df: pd.DataFrame, period: int = 20) -> float:
+        """
+        计算CCI (商品通道指数)
+        
+        CCI = (TP - SMA_TP) / (0.015 * Mean_Deviation)
+        TP = (High + Low + Close) / 3
+        """
+        if len(df) < period:
+            return 0.0
+        
+        # 典型价格 (Typical Price)
+        tp = (df['High'] + df['Low'] + df['Close']) / 3
+        
+        # SMA of TP
+        sma_tp = tp.rolling(window=period).mean()
+        
+        # Mean Deviation
+        mean_dev = tp.rolling(window=period).apply(lambda x: np.abs(x - x.mean()).mean())
+        
+        # CCI
+        cci = (tp - sma_tp) / (0.015 * mean_dev)
+        
+        return cci.iloc[-1] if not pd.isna(cci.iloc[-1]) else 0.0
+    
+    @staticmethod
+    def get_bb_position(price: float, upper: float, lower: float) -> str:
+        """
+        判断价格在布林带中的位置
+        
+        Returns:
+            'upper' - 接近上轨
+            'middle' - 中轨附近
+            'lower' - 接近下轨
+        """
+        if upper == lower:
+            return 'middle'
+        
+        position = (price - lower) / (upper - lower)
+        
+        if position > 0.8:
+            return 'upper'
+        elif position < 0.2:
+            return 'lower'
+        else:
+            return 'middle'
+    
+    @staticmethod
     def determine_trend(df: pd.DataFrame) -> Tuple[str, str]:
         """
         判断趋势
@@ -163,6 +234,17 @@ class IndicatorCalculator:
         high_52w = df['High'].tail(252).max() if len(df) >= 252 else df['High'].max()
         low_52w = df['Low'].tail(252).min() if len(df) >= 252 else df['Low'].min()
         
+        # === 用户偏好指标：BB + 120 SMA + CCI 120 ===
+        # 120周期SMA（小时线约5天）
+        ma_120 = cls.calculate_ma(df, 120).iloc[-1] if len(df) >= 120 else current_price
+        
+        # 布林带 (20周期，2倍标准差)
+        bb_upper, bb_middle, bb_lower = cls.calculate_bollinger_bands(df, period=20, std_dev=2)
+        bb_position = cls.get_bb_position(current_price, bb_upper, bb_lower)
+        
+        # CCI 120（120周期）
+        cci_120 = cls.calculate_cci(df, period=120)
+        
         return {
             'current_price': current_price,
             'prev_price': prev_price,
@@ -170,6 +252,7 @@ class IndicatorCalculator:
             'daily_change_pct': daily_change_pct,
             'ma_10': ma_10,
             'ma_50': ma_50,
+            'ma_120': ma_120,
             'ytd_return': ytd_return,
             'trend': trend,
             'trend_color': trend_color,
@@ -177,6 +260,15 @@ class IndicatorCalculator:
             'rsi': rsi,
             'volatility': volatility,
             'high_52w': high_52w,
+            'low_52w': low_52w,
+            # BB指标
+            'bb_upper': bb_upper,
+            'bb_middle': bb_middle,
+            'bb_lower': bb_lower,
+            'bb_position': bb_position,
+            'bb_width': ((bb_upper - bb_lower) / bb_middle * 100) if bb_middle != 0 else 0,
+            # CCI 120
+            'cci_120': cci_120,
             'low_52w': low_52w,
         }
 

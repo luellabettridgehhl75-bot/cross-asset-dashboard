@@ -4,7 +4,7 @@ Telegram推送模块 - 发送监控摘要到Telegram
 
 import requests
 from datetime import datetime
-from typing import Dict
+from typing import Dict, List, Optional
 import config
 
 
@@ -49,20 +49,21 @@ class TelegramBot:
             print(f"Error sending Telegram message: {e}")
             return False
     
-    def send_summary(self, data: Dict) -> bool:
+    def send_summary(self, data: Dict, recommendations: Optional[List] = None) -> bool:
         """
         发送监控摘要
         
         Args:
             data: 资产数据
+            recommendations: 买入推荐列表
             
         Returns:
             是否发送成功
         """
-        message = self._format_summary(data)
+        message = self._format_summary(data, recommendations)
         return self.send_message(message)
     
-    def _format_summary(self, data: Dict) -> str:
+    def _format_summary(self, data: Dict, recommendations: Optional[List] = None) -> str:
         """格式化摘要消息"""
         timestamp = datetime.now().strftime('%Y-%m-%d %H:%M')
         
@@ -71,13 +72,24 @@ class TelegramBot:
 
 """
         
+        # 添加四专家推荐（如果有）
+        if recommendations:
+            buy_recs = [r for r in recommendations if r.consensus_score >= 60][:3]
+            if buy_recs:
+                message += "🏆 *四专家推荐买入*\n"
+                for rec in buy_recs:
+                    emoji = "🟢" if rec.consensus_score >= 75 else "🟡"
+                    message += f"{emoji} #{rec.overall_rank} {rec.symbol}: {rec.consensus_signal.cn_name} ({rec.consensus_score:.0f}分)\n"
+                    message += f"   建议: {rec.position_size}仓位 | 止损${rec.stop_loss:.0f}\n"
+                message += "\n"
+        
         # 显示每个类别的关键资产
         for category, assets in data.items():
             if not assets:
                 continue
             
             category_name = config.CATEGORY_NAMES.get(category, category)
-            message += f"\n*{category_name}*\n"
+            message += f"*{category_name}*\n"
             
             # 只显示前3个资产
             for i, (symbol, info) in enumerate(assets.items()):
@@ -92,8 +104,10 @@ class TelegramBot:
                 
                 change_str = f"{change:+.2f}%"
                 message += f"{trend} {symbol}: ${price:.2f} ({change_str})\n"
+            
+            message += "\n"
         
-        message += "\n📈 [查看完整看板](file:///path/to/dashboard.html)"
+        message += "📈 [查看完整看板](https://luellabettridgehhl75-bot.github.io/cross-asset-dashboard/)"
         
         return message
 
