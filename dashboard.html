@@ -316,7 +316,7 @@
 <body>
     <div class="header">
         <h1>📊 跨资产实时监控系统</h1>
-        <div class="timestamp">专业版 | 更新时间: 2026-06-15 20:57:15</div>
+        <div class="timestamp">专业版 | 更新时间: 2026-06-15 23:05:19</div>
     </div>
 
     <div class="market-overview">
@@ -1771,23 +1771,23 @@
                     <div class="asset-trend">🟡震荡</div>
                 </div>
                 <div class="price-row">
-                    <div class="asset-price">$66,494.53</div>
+                    <div class="asset-price">$66,185.13</div>
                     <span class="asset-change positive">
-                        +1.19%
+                        +0.72%
                     </span>
                 </div>
                 <div class="asset-metrics" style="grid-template-columns: repeat(3, 1fr);">
                     <div class="metric">
                         <span class="metric-label">YTD</span>
-                        <span class="metric-value negative">-24.0%</span>
+                        <span class="metric-value negative">-24.4%</span>
                     </div>
                     <div class="metric">
-                        <span class="metric-label">RSI(38)</span>
+                        <span class="metric-label">RSI(37)</span>
                         <span class="metric-value">正常<span class="rsi-indicator rsi-neutral"></span></span>
                     </div>
                     <div class="metric">
                         <span class="metric-label">MA120</span>
-                        <span class="metric-value">$71,787.09</span>
+                        <span class="metric-value">$71,784.51</span>
                     </div>
                     <div class="metric">
                         <span class="metric-label">BB</span>
@@ -1804,7 +1804,7 @@
                                 <div class="cci-line" style="left: 25%;"></div>
                                 <div class="cci-line" style="left: 50%;"></div>
                                 <div class="cci-line" style="left: 75%;"></div>
-                                <div class="cci-dot" style="left: 28.9%;"></div>
+                                <div class="cci-dot" style="left: 30.2%;"></div>
                             </div>
                             <div class="cci-labels">
                                 <span>-200</span>
@@ -1830,7 +1830,7 @@
                 <div style="margin-top: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
                     <div class="range-bar">
-                        <div class="range-indicator" style="left: 11.2%;"></div>
+                        <div class="range-indicator" style="left: 10.7%;"></div>
                     </div>
                 </div>
             </div>
@@ -1844,23 +1844,96 @@
                     <div class="asset-trend">🟡震荡</div>
                 </div>
                 <div class="price-row">
-                    <div class="asset-price">$1,816.04</div>
+                    <div class="asset-price">$1,789.03</div>
                     <span class="asset-change positive">
-                        +5.30%
+                        +3.74%
                     </span>
                 </div>
                 <div class="asset-metrics" style="grid-template-columns: repeat(3, 1fr);">
                     <div class="metric">
                         <span class="metric-label">YTD</span>
-                        <span class="metric-value negative">-38.8%</span>
+                        <span class="metric-value negative">-39.7%</span>
                     </div>
                     <div class="metric">
-                        <span class="metric-label">RSI(39)</span>
+                        <span class="metric-label">RSI(37)</span>
                         <span class="metric-value">正常<span class="rsi-indicator rsi-neutral"></span></span>
                     </div>
                     <div class="metric">
                         <span class="metric-label">MA120</span>
-                        <span class="metric-value">$2,095.81</span>
+                        <span class="metric-value">$2,095.58</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">BB</span>
+                        <span class="metric-value">中轨</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">波动率</span>
+                        <span class="metric-value">3.8%</span>
+                    </div>
+                    <div class="metric" style="grid-column: span 3;">
+                        <span class="metric-label">CCI 120 | 超卖区</span>
+                        <div class="cci-gauge">
+                            <div class="cci-bar">
+                                <div class="cci-line" style="left: 25%;"></div>
+                                <div class="cci-line" style="left: 50%;"></div>
+                                <div class="cci-line" style="left: 75%;"></div>
+                                <div class="cci-dot" style="left: 16.5%;"></div>
+                            </div>
+                            <div class="cci-labels">
+                                <span>-200</span>
+                                <span class="cci-threshold">-100</span>
+                                <span>0</span>
+                                <span class="cci-threshold">+100</span>
+                                <span>+200</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <style>
+                    .cci-gauge { margin-top: 4px; }
+                    .cci-bar { position: relative; height: 10px; background: linear-gradient(90deg, #dc2626 0%, #facc15 25%, #22c55e 50%, #facc15 75%, #dc2626 100%); border-radius: 5px; }
+                    .cci-line { position: absolute; top: 0; bottom: 0; width: 2px; background: rgba(0,0,0,0.4); }
+                    .cci-line:nth-child(1) { left: 25%; } /* -100 */
+                    .cci-line:nth-child(2) { left: 50%; } /* 0 */
+                    .cci-line:nth-child(3) { left: 75%; } /* +100 */
+                    .cci-dot { position: absolute; top: 50%; transform: translate(-50%, -50%); width: 14px; height: 14px; background: #fff; border: 3px solid #2563eb; border-radius: 50%; box-shadow: 0 0 10px rgba(37,99,235,0.8); z-index: 10; }
+                    .cci-labels { display: flex; justify-content: space-between; font-size: 9px; color: #64748b; margin-top: 2px; }
+                    .cci-threshold { color: #94a3b8; font-weight: 600; }
+                </style>
+                <div style="margin-top: 8px;">
+                    <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
+                    <div class="range-bar">
+                        <div class="range-indicator" style="left: 8.7%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="asset-card">
+                <div class="asset-header">
+                    <div>
+                        <div class="asset-symbol">SOL-USD</div>
+                        <div class="asset-name">Solana</div>
+                    </div>
+                    <div class="asset-trend">🟡震荡</div>
+                </div>
+                <div class="price-row">
+                    <div class="asset-price">$73.80</div>
+                    <span class="asset-change positive">
+                        +3.70%
+                    </span>
+                </div>
+                <div class="asset-metrics" style="grid-template-columns: repeat(3, 1fr);">
+                    <div class="metric">
+                        <span class="metric-label">YTD</span>
+                        <span class="metric-value negative">-40.7%</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">RSI(40)</span>
+                        <span class="metric-value">正常<span class="rsi-indicator rsi-neutral"></span></span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">MA120</span>
+                        <span class="metric-value">$83.69</span>
                     </div>
                     <div class="metric">
                         <span class="metric-label">BB</span>
@@ -1877,7 +1950,7 @@
                                 <div class="cci-line" style="left: 25%;"></div>
                                 <div class="cci-line" style="left: 50%;"></div>
                                 <div class="cci-line" style="left: 75%;"></div>
-                                <div class="cci-dot" style="left: 13.4%;"></div>
+                                <div class="cci-dot" style="left: 12.8%;"></div>
                             </div>
                             <div class="cci-labels">
                                 <span>-200</span>
@@ -1903,80 +1976,7 @@
                 <div style="margin-top: 8px;">
                     <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
                     <div class="range-bar">
-                        <div class="range-indicator" style="left: 9.5%;"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="asset-card">
-                <div class="asset-header">
-                    <div>
-                        <div class="asset-symbol">SOL-USD</div>
-                        <div class="asset-name">Solana</div>
-                    </div>
-                    <div class="asset-trend">🟡震荡</div>
-                </div>
-                <div class="price-row">
-                    <div class="asset-price">$74.88</div>
-                    <span class="asset-change positive">
-                        +5.22%
-                    </span>
-                </div>
-                <div class="asset-metrics" style="grid-template-columns: repeat(3, 1fr);">
-                    <div class="metric">
-                        <span class="metric-label">YTD</span>
-                        <span class="metric-value negative">-39.8%</span>
-                    </div>
-                    <div class="metric">
-                        <span class="metric-label">RSI(42)</span>
-                        <span class="metric-value">正常<span class="rsi-indicator rsi-neutral"></span></span>
-                    </div>
-                    <div class="metric">
-                        <span class="metric-label">MA120</span>
-                        <span class="metric-value">$83.70</span>
-                    </div>
-                    <div class="metric">
-                        <span class="metric-label">BB</span>
-                        <span class="metric-value">中轨</span>
-                    </div>
-                    <div class="metric">
-                        <span class="metric-label">波动率</span>
-                        <span class="metric-value">4.0%</span>
-                    </div>
-                    <div class="metric" style="grid-column: span 3;">
-                        <span class="metric-label">CCI 120 | 超卖区</span>
-                        <div class="cci-gauge">
-                            <div class="cci-bar">
-                                <div class="cci-line" style="left: 25%;"></div>
-                                <div class="cci-line" style="left: 50%;"></div>
-                                <div class="cci-line" style="left: 75%;"></div>
-                                <div class="cci-dot" style="left: 8.9%;"></div>
-                            </div>
-                            <div class="cci-labels">
-                                <span>-200</span>
-                                <span class="cci-threshold">-100</span>
-                                <span>0</span>
-                                <span class="cci-threshold">+100</span>
-                                <span>+200</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <style>
-                    .cci-gauge { margin-top: 4px; }
-                    .cci-bar { position: relative; height: 10px; background: linear-gradient(90deg, #dc2626 0%, #facc15 25%, #22c55e 50%, #facc15 75%, #dc2626 100%); border-radius: 5px; }
-                    .cci-line { position: absolute; top: 0; bottom: 0; width: 2px; background: rgba(0,0,0,0.4); }
-                    .cci-line:nth-child(1) { left: 25%; } /* -100 */
-                    .cci-line:nth-child(2) { left: 50%; } /* 0 */
-                    .cci-line:nth-child(3) { left: 75%; } /* +100 */
-                    .cci-dot { position: absolute; top: 50%; transform: translate(-50%, -50%); width: 14px; height: 14px; background: #fff; border: 3px solid #2563eb; border-radius: 50%; box-shadow: 0 0 10px rgba(37,99,235,0.8); z-index: 10; }
-                    .cci-labels { display: flex; justify-content: space-between; font-size: 9px; color: #64748b; margin-top: 2px; }
-                    .cci-threshold { color: #94a3b8; font-weight: 600; }
-                </style>
-                <div style="margin-top: 8px;">
-                    <div style="font-size: 10px; color: #64748b; margin-bottom: 3px;">52周区间</div>
-                    <div class="range-bar">
-                        <div class="range-indicator" style="left: 8.3%;"></div>
+                        <div class="range-indicator" style="left: 7.7%;"></div>
                     </div>
                 </div>
             </div>
@@ -1992,13 +1992,13 @@
                 <div class="price-row">
                     <div class="asset-price">$0.60</div>
                     <span class="asset-change positive">
-                        +13.70%
+                        +13.80%
                     </span>
                 </div>
                 <div class="asset-metrics" style="grid-template-columns: repeat(3, 1fr);">
                     <div class="metric">
                         <span class="metric-label">YTD</span>
-                        <span class="metric-value positive">+23.9%</span>
+                        <span class="metric-value positive">+24.0%</span>
                     </div>
                     <div class="metric">
                         <span class="metric-label">RSI(61)</span>
@@ -2529,7 +2529,7 @@
                 <div class="advisory-details">
                     <div class="detail-row">
                         <span>价格</span>
-                        <strong>$1816.04</strong>
+                        <strong>$1789.03</strong>
                     </div>
                     <div class="detail-row">
                         <span>建议仓位</span>
@@ -2537,7 +2537,7 @@
                     </div>
                     <div class="detail-row">
                         <span>止损/止盈</span>
-                        <strong>$1673.61 / $1958.47</strong>
+                        <strong>$1652.63 / $1925.43</strong>
                     </div>
                     <div class="detail-row">
                         <span>风险等级</span>
@@ -2569,7 +2569,7 @@
                 <div class="advisory-details">
                     <div class="detail-row">
                         <span>价格</span>
-                        <strong>$66494.53</strong>
+                        <strong>$66185.13</strong>
                     </div>
                     <div class="detail-row">
                         <span>建议仓位</span>
@@ -2577,7 +2577,7 @@
                     </div>
                     <div class="detail-row">
                         <span>止损/止盈</span>
-                        <strong>$63077.56 / $69911.50</strong>
+                        <strong>$62804.45 / $69565.81</strong>
                     </div>
                     <div class="detail-row">
                         <span>风险等级</span>
